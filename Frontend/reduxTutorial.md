@@ -73,10 +73,32 @@
 
 
 **another way**
-<code>const addUser2 = (user) =>{
-     return {
-          type: "ADD_USER2",
-          payload: {name: user}
+<code>
+     const addUser2 = (user) =>{
+          return {
+               type: "ADD_USER2",
+               payload: {name: user}
+          }
      }
-}
+</code>
+
+
+* Reducer: reducers are pure function which handles all logic. it updates the state depends on action type
+<code>
+     const reducerCounter = (state=initialCounterState, action) =>{
+          switch (action.type) {
+               case INCREMENT:
+               return{
+                    ...state,
+                    count: state.count + 1
+               }
+               case DECREMENT:
+               return{
+                    ...state,
+                    count: state.count - 1
+               }
+               default:
+                    state;
+          }
+     }
 </code>
