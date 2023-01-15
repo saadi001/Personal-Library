@@ -26,7 +26,6 @@
 
 ## Concepts
 * state: consider what states you want to manage
-
 <code>
 const initialCounterState = {
      conunt: 0
@@ -37,31 +36,39 @@ const initialUserState = {
 </code>
 
 * action: action is a obejct where has 2 kind of data - type, payload
-`
+<code>
 {
      type: 'INCREMENT'
 }
-/* We can write it into an function */
+</code>
+
+We can write it into an function 
+<code>
 const incrementCounter = () =>{
      return {
           type: "INCREMENT"
      }
 }
-// then whenever we call this function it return that type is INCREMENT
+</code>
+then whenever we call this function it return that type is INCREMENT
+<code>
 const decrementCounter = () =>{
      return{
           type: "DECREMENT"
      }
 }
-// If we need to pass data with type then we will payload
+</code>
+If we need to pass data with type then we will payload
+<code>
 const addUser = () =>{
      return{
           type: "ADD_USER",
           payload: {name: "sheikh saadi"}
      }
 }
-// another way
-const addUser2 = (user) =>{
+</code>
+another way
+`const addUser2 = (user) =>{
      return {
           type: "ADD_USER2",
           payload: {name: user}
