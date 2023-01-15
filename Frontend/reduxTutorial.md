@@ -15,3 +15,5 @@
 * dispatch an action(type & payload)
 * reducer update state based on Action Type
 * store will update the view
+
+![redux-image](https://user-images.githubusercontent.com/28184926/168863620-b2ffa708-8c0b-4b90-b81d-45212248b055.png)
