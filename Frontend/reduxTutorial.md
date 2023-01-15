@@ -26,12 +26,15 @@
 
 ## Concepts
 * state: consider what states you want to manage
-<code>const initialCounterState = {
+
+<code>
+const initialCounterState = {
      conunt: 0
 }
 const initialUserState = {
      users: [{name: 'sheikh saadi'}]
-}</code>
+}
+</code>
 
 * action: action is a obejct where has 2 kind of data - type, payload
 `
