@@ -87,12 +87,12 @@
 <code>
      const reducerCounter = (state=initialCounterState, action) =>{
           switch (action.type) {
-               case INCREMENT:
+               case "INCREMENT":
                return{
                     ...state,
                     count: state.count + 1
                }
-               case DECREMENT:
+               case "DECREMENT":
                return{
                     ...state,
                     count: state.count - 1
@@ -101,4 +101,16 @@
                     state;
           }
      }
+</code>
+
+* store: It holds the states. It has 3 important methods- getState(), dispatch(), suscribe()
+create store
+<code>
+const store = createStore(reducerCounter);
+
+store.subscribe(()=>{
+     console.log(store.getState())
+})
+
+store.dispatch(incrementCounter())
 </code>
