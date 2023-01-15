@@ -27,50 +27,56 @@
 ## Concepts
 * state: consider what states you want to manage
 <code>
-const initialCounterState = {
-     conunt: 0
-}
-const initialUserState = {
-     users: [{name: 'sheikh saadi'}]
-}
+     const initialCounterState = {
+          count: 0
+     }
+     const initialUserState = {
+          users: [{name: 'sheikh saadi'}]
+     }
 </code>
+
 
 * action: action is a obejct where has 2 kind of data - type, payload
 <code>
-{
-     type: 'INCREMENT'
-}
+     {
+          type: 'INCREMENT'
+     }
 </code>
 
-We can write it into an function 
+**We can write it into an function**
 <code>
-const incrementCounter = () =>{
-     return {
-          type: "INCREMENT"
+     const incrementCounter = () =>{
+          return {
+               type: "INCREMENT"
+          }
      }
-}
 </code>
-then whenever we call this function it return that type is INCREMENT
+
+**then whenever we call this function it return that type is INCREMENT**
 <code>
-const decrementCounter = () =>{
-     return{
-          type: "DECREMENT"
+     const decrementCounter = () =>{
+          return{
+               type: "DECREMENT"
+          }
      }
-}
 </code>
-If we need to pass data with type then we will payload
+
+**If we need to pass data with type then we will payload**
 <code>
-const addUser = () =>{
-     return{
-          type: "ADD_USER",
-          payload: {name: "sheikh saadi"}
+     const addUser = () =>{
+          return{
+               type: "ADD_USER",
+               payload: {name: "sheikh saadi"}
+          }
      }
-}
 </code>
-another way
-`const addUser2 = (user) =>{
+
+
+**another way**
+<code>const addUser2 = (user) =>{
      return {
           type: "ADD_USER2",
           payload: {name: user}
      }
-}`
+}
+</code>
