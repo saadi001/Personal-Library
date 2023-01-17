@@ -185,4 +185,57 @@ store.subscribe(()=>{
 })
 
 store.dispatch(incrementCounterAction())
+store.dispatch(incrementCounterAction())
+store.dispatch(decrementCounterAction())
+store.dispatch(resetCounterAction())
+</code>
+
+## payload in Action
+<code>
+const { createStore } = require("redux");
+
+const GET_PRODUCTS = "GET_PRODUCTS";
+const ADD_PRODUCTS = "ADD_PRODUCTS";
+
+const initialProductState = {
+     product: ['sugar', 'milk'],
+     numberOfProduct: 2
+}
+
+const getProductAction = () => {
+     return{
+          type: GET_PRODUCTS
+     }
+}
+
+const addProductAction = (product) => {
+     return {
+          type: ADD_PRODUCTS,
+          payload: product
+     }
+}
+
+const productReducer = (state=initialProductState, action) =>{
+     switch (action.type) {
+          case GET_PRODUCTS:
+               return{
+                    ...state,
+               }
+          case ADD_PRODUCTS:
+               return{
+                    product: [...state.product, action.payload],
+                    numberOfProduct: state.numberOfProduct + 1
+               }
+          default:
+               state;
+     }
+}
+
+const store = createStore(productReducer);
+
+store.subscribe(()=>{
+     console.log(store.getState())
+})
+
+store.dispatch(getProductAction())
 </code>
