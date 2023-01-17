@@ -117,12 +117,11 @@ store.dispatch(incrementCounter())
 
 ## Counter 
 <code>
-/* 
+
 1. state - count:0
 2. action - increment, decrement, reset
 3. reducer
 4. store
-*/
 
 const { createStore } = require("redux")
 
@@ -230,12 +229,109 @@ const productReducer = (state=initialProductState, action) =>{
                state;
      }
 }
-
 const store = createStore(productReducer);
 
 store.subscribe(()=>{
      console.log(store.getState())
 })
+store.dispatch(getProductAction())
+</code>
+
+## combine multiple reducer 
+<code>
+const { createStore, combineReducers } = require("redux");
+
+// product constant 
+const GET_PRODUCTS = "GET_PRODUCTS";
+const ADD_PRODUCTS = "ADD_PRODUCTS";
+// cart constant 
+const GET_CART = "GET_CART";
+const ADD_CART = "ADD_CART";
+
+// product state
+const initialProductState = {
+     product: ['sugar', 'milk'],
+     numberOfProduct: 2
+}
+// cart state 
+const initialCartState = {
+     cart: ["carrot"],
+     numberOfProduct: 1
+}
+// product action 
+const getProductAction = () => {
+     return {
+          type: GET_PRODUCTS
+     }
+}
+const addProductAction = (product) => {
+     return {
+          type: ADD_PRODUCTS,
+          payload: product
+     }
+}
+// cart action 
+const getCartAction = () => {
+     return {
+          type: GET_CART
+     }
+}
+const addCartAction = (product) => {
+     return {
+          type: ADD_CART,
+          payload: product
+     }
+}
+
+// product reducer 
+const productReducer = (state = initialProductState, action) => {
+     switch (action.type) {
+          case GET_PRODUCTS:
+               return {
+                    ...state,
+               }
+          case ADD_PRODUCTS:
+               return {
+                    product: [...state.product, action.payload],
+                    numberOfProduct: state.numberOfProduct + 1
+               }
+          default:
+               return state;
+     }
+}
+
+// cart reducer 
+const cartReducer = (state=initialCartState, action) =>{
+     switch (action.type) {
+          case GET_CART:
+               return{
+                    ...state
+               }
+          case ADD_CART:
+               return{
+                    cart: [...state.cart, action.payload],
+                    numberOfProduct: state.numberOfProduct + 1
+               }
+     
+          default:
+               return state;
+     }
+}
+
+// combine reducer 
+const rootReducer = combineReducers({
+     productR: productReducer,
+     cartR: cartReducer
+})
+
+const store = createStore(rootReducer);
+
+store.subscribe(() => {
+     console.log(store.getState())
+})
 
 store.dispatch(getProductAction())
+store.dispatch(addProductAction('shosha'))
+store.dispatch(getCartAction())
+store.dispatch(addCartAction('cini'))
 </code>
