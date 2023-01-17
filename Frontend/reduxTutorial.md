@@ -238,7 +238,7 @@ store.dispatch(getProductAction())
 </code>
 
 ## combine multiple reducer 
-<code>
+```
 const { createStore, combineReducers } = require("redux");
 
 // product constant 
@@ -311,8 +311,7 @@ const cartReducer = (state=initialCartState, action) =>{
                return{
                     cart: [...state.cart, action.payload],
                     numberOfProduct: state.numberOfProduct + 1
-               }
-     
+               }     
           default:
                return state;
      }
@@ -334,4 +333,4 @@ store.dispatch(getProductAction())
 store.dispatch(addProductAction('shosha'))
 store.dispatch(getCartAction())
 store.dispatch(addCartAction('cini'))
-</code>
+```
