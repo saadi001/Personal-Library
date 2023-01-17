@@ -333,4 +333,4 @@ store.dispatch(getProductAction())
 store.dispatch(addProductAction('shosha'))
 store.dispatch(getCartAction())
 store.dispatch(addCartAction('cini'))
-```
+```js
