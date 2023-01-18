@@ -333,4 +333,62 @@ store.dispatch(getProductAction())
 store.dispatch(addProductAction('shosha'))
 store.dispatch(getCartAction())
 store.dispatch(addCartAction('cini'))
-```html
+```
+
+## Middleware
+* for extra feature,middlepoint of dispatching an action and handledby reducer, performing async tasks, login etc
+* Example of popular redux middlewares packages: redux-logger, redux-thunk
+* `npm install redux-logger`
+Example: 
+
+```
+const { createStore, combineReducers, applyMiddleware } = require("redux");
+const { default: logger } = require("redux-logger");
+
+// product constant 
+const GET_PRODUCTS = "GET_PRODUCTS";
+const ADD_PRODUCTS = "ADD_PRODUCTS";
+
+// product state
+const initialProductState = {
+     product: ['sugar', 'milk'],
+     numberOfProduct: 2
+}
+// product action 
+const getProductAction = () => {
+     return {
+          type: GET_PRODUCTS
+     }
+}
+const addProductAction = (product) => {
+     return {
+          type: ADD_PRODUCTS,
+          payload: product
+     }
+}
+
+// product reducer 
+const productReducer = (state = initialProductState, action) => {
+     switch (action.type) {
+          case GET_PRODUCTS:
+               return {
+                    ...state,
+               }
+          case ADD_PRODUCTS:
+               return {
+                    product: [...state.product, action.payload],
+                    numberOfProduct: state.numberOfProduct + 1
+               }
+          default:
+               return state;
+     }
+}
+const store = createStore(productReducer, applyMiddleware(logger));
+
+store.subscribe(() => {
+     console.log(store.getState())
+})
+
+store.dispatch(getProductAction())
+store.dispatch(addProductAction('shosha'))
+```
