@@ -9,6 +9,8 @@ A predictable state container js Apps
 better to see here https://redux.js.org/
 
 How reduxs works: 
-state ----> grandfather
-     |___ parent
-     |___children
+`state ----> grandfather
+     |____> parent
+     |____>children`
+
+![redux works](../asset/redux%20pillar.jpg)
