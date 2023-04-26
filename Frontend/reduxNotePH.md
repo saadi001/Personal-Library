@@ -11,9 +11,11 @@ A predictable state container js Apps
 better to see here https://redux.js.org/
 
 How reduxs works: 
-```state ----> grandfather
+```
+state ----> grandfather
      |____> parent
-     |____>children```
+     |____>children
+```
 
 ### redux pillar
 1. store
@@ -29,11 +31,11 @@ How reduxs works:
  2. Predictable
  3. Encapsulated
  4. Optimized
- For more: https://react-redux.js.org/
+ For more: [https://react-redux.js.org/](https://react-redux.js.org/)
 
 **redux toolkit** - The official, opinionated, batteries-included toolset for efficient Redux development
 1. Simple 
 2. Opinionated
 3. Powerful
 4. Effective
-For more: https://redux-toolkit.js.org/git add .
+For more: [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/)
