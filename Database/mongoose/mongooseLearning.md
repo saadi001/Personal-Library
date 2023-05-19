@@ -91,3 +91,122 @@ app.listen(port, () => {
      console.log(`Example app listening on port ${port}`)
 })
 ```
+
+## Resetup
+
+when we will do large application then this will be hassle to do all the code in one file. So we will follow a specific structure for this. 
+There are 2 structure for this.
+1. MVC(Model-View-Controller)
+2. Modular
+
+we will follow modular structure here. example: 
+server.ts > app.ts > user.controller.ts > user.service.ts > user.model.ts > user.interface.ts
+example: 
+**server.ts** 
+```ts
+const mongoose = require('mongoose');
+import app from './app'
+
+const port = 5000;
+
+// database
+async function main() {
+     try {
+          await mongoose.connect('mongodb://127.0.0.1:27017/practise-mongoose');
+          console.log("Database connected successful");
+
+          app.listen(port, () => {
+               console.log(`Example app listening on port ${port}`)
+          })
+     }catch(err){
+          console.log(`Failed to connect database, ${err}`);
+     }
+   }
+
+main();
+```
+
+**app.ts**
+```
+import express, { Application} from 'express'
+import cors from 'cors'
+
+const app:Application = express()
+
+// application route 
+import userRoutes from './app/modules/user/user.route';
+
+// using cors 
+app.use(cors())
+
+// purse data 
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+// api calling 
+app.use('/api/v1/user', userRoutes)
+
+export default app;
+```
+**user.controller.ts**
+```ts 
+import { NextFunction, Request, Response } from "express";
+import { createUserToDb, getUserByIdFromDb, getUsersFromDb } from "./user.service";
+
+export const getUser = async(req:Request, res:Response, next: NextFunction) => { 
+     const user = await getUsersFromDb();
+     res.status(200).json({
+          status: "success",
+          data: user
+     })
+}
+```
+
+**user.services.ts**
+```ts
+import { IUser } from "./user.interface";
+import User from "./user.model";
+
+export const createUserToDb = async(payload: IUser): Promise<IUser> =>{
+     const user = new User(payload)
+      await user.save();
+      console.log(user.fullName());
+      return user;
+}
+```
+
+**user.mode.ts**
+```
+import { Model, Schema, model } from "mongoose";
+import { IUser, IUserMethods } from "./user.interface";
+
+const userSchema = new Schema<IUser, UserModel, IUserMethods>({
+     id: { type: String, required: true, unique: true },
+     role: {type: String, required: true},
+     password: {type: String, required: true},
+     name: {
+          firstName: {type: String, required: true},
+          middleName: {type: String, required: true},
+          lastName: {type: String, required: true}
+     }
+})
+
+const User = model<IUser, UserModel>('User', userSchema);
+export default User;
+```
+
+**user.interface.ts**
+```ts
+export interface IUser {
+     id: string;
+     role: "student";
+     password: string;
+     name: {
+          firstName: string,
+          middleName: string,
+          lastName: string
+     }
+}
+```
+
+
