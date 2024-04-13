@@ -127,7 +127,7 @@ main();
 ```
 
 **app.ts**
-```
+```ts
 import express, { Application} from 'express'
 import cors from 'cors'
 
