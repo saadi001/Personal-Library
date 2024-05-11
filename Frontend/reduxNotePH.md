@@ -39,3 +39,5 @@ state ----> grandfather
 3. Powerful
 4. Effective
 For more: [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/)
+
+why i stoped here
