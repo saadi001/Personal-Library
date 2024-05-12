@@ -144,3 +144,36 @@ db.inventory.updateOne(
    { $addToSet: { tags: { $each: [ "camera", "electronics", "accessories" ] } } }
  )
 ```
+
+18. $push: The $push operator appends a specified value to an array.
+```
+db.students.updateOne(
+   { _id: 1 },
+   { $push: { scores: 89 } }
+)
+```
+
+19. $unset:  deletes a particular field. it will delete in order for same field. If the field does not exist, then $unset does nothing.
+```
+db.products.updateOne(
+   { sku: "unknown" },
+   { $unset: { quantity: "", instock: "" } }
+)
+
+it will remove quantity and instock field.  
+```
+20. $pop: The $pop operator removes the first or last element of an array. Pass $pop a value of -1 to remove the first element of an array and 1 to remove the last element in an array.
+```
+db.students.updateOne( { _id: 1 }, { $pop: { scores: -1 } } )
+
+it will remove first element.  
+```
+21. $pull: removes from an existing array all values that matches a specified condition.
+```
+db.stores.updateMany(
+    { },
+    { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } }
+)
+
+it will remove "apples" and "oranges" from the fruits array "carrots" from the vegetables array
+```
