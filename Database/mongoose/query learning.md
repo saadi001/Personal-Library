@@ -146,6 +146,7 @@ db.inventory.updateOne(
 ```
 
 18. $push: The $push operator appends a specified value to an array.
+
 ```
 db.students.updateOne(
    { _id: 1 },
@@ -153,27 +154,92 @@ db.students.updateOne(
 )
 ```
 
-19. $unset:  deletes a particular field. it will delete in order for same field. If the field does not exist, then $unset does nothing.
+19. $unset: deletes a particular field. it will delete in order for same field. If the field does not exist, then $unset does nothing.
+
 ```
 db.products.updateOne(
    { sku: "unknown" },
    { $unset: { quantity: "", instock: "" } }
 )
 
-it will remove quantity and instock field.  
+it will remove quantity and instock field.
 ```
+
 20. $pop: The $pop operator removes the first or last element of an array. Pass $pop a value of -1 to remove the first element of an array and 1 to remove the last element in an array.
+
 ```
 db.students.updateOne( { _id: 1 }, { $pop: { scores: -1 } } )
 
-it will remove first element.  
+it will remove first element.
 ```
+
 21. $pull: removes from an existing array all values that matches a specified condition.
+
 ```
 db.stores.updateMany(
     { },
     { $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } }
 )
 
-it will remove "apples" and "oranges" from the fruits array "carrots" from the vegetables array
+it will remove "apples" and "oranges" from the fruits array "carrots" from the vegetables array but if has multiple only one will be remove.
+```
+
+22. $pullAll: removes all the matched value .
+
+```
+db.survey.updateOne(
+   { _id: 1 },
+   { $pullAll: { scores: [ 0, 5 ] } } )
+
+it will remove all 0 and 5 from the array.
+```
+
+22. $deleteOne: delete one document only.
+
+```
+db.employees.deleteOne({ "age": 39 })
+
+it will delete where age is 39 but the first one, we usually delete with id.
+```
+
+another interesting is if we do not send any argument then it will delete first document of the collection.
+
+```
+db.employees.deleteOne({})
+```
+
+23. $deleteMany: delete all filtered document.
+
+```
+db.employees.deleteMany({ "age": { $gt: 38 } })
+
+it will delete all where age is more than 39
+```
+
+if we do not send any argument then it will delete all of the collection.
+
+```
+db.employees.deleteMany({})
+```
+
+24. createCollection: create collection in cluster
+
+```
+db.createCollection(‘Collection_name’);
+```
+
+25. dropCollection: drop collection from cluster
+
+```
+db.collectionName.drop()
+```
+26. $sort: The $sort modifier orders the elements of an array during a $push operation.
+
+```
+db.students.updateOne(
+   { _id: 2 },
+   { $push: { tests: { $each: [ 40, 60 ], $sort: 1 } } }
+)
+
+it will push to tests array and sort it in ascending way.
 ```
