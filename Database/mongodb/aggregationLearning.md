@@ -103,13 +103,15 @@ $group has some operators:
 - $push: Adds extra values into the array of the resulting document.
 - $top: the top element within a group according to the specified sort order.
 <br>
-Examples: 
+#### Examples: 
+
 ```js
 //basic
 db.practise.aggregate([
     {$group: { _id: "$gender"}}
     ])
 ```
+
 ```js
 //with sum operator. if we want to see total of every unique item
 db.practise.aggregate([
@@ -137,5 +139,20 @@ db.practise.aggregate([
         minSalary: {$min: "$age"},
         avgSalary: {$avg: "$age"}
     }}
+    ])
+```
+7. $unwind: amara array field ke group korle unique array er vitore unique value thake na. ek e barbar thake but shudu array diey group hoy. jodi array er moddher prottek unique value alada group korte chai taile $unwind use korte hoy. 
+
+```js
+//ekhane friends array er moddhe thaka sobgulo 
+db.practise.aggregate([
+    {$unwind: "$friends"},
+    {$group: {_id: "$friends", count: {$sum: 1}}}
+    ])
+
+// amra jodi chai je prottek age er interests(array) gulo ki ki. we can do it with unwind and group with age.
+db.practise.aggregate([
+    {$unwind: "$interests"},
+    {$group: {_id: "$age", interestperAge: {$push: "$interests"}}},
     ])
 ```
