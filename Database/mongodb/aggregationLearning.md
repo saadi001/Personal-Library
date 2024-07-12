@@ -156,3 +156,68 @@ db.practise.aggregate([
     {$group: {_id: "$age", interestperAge: {$push: "$interests"}}},
     ])
 ```
+8. $bucket, $sort, $limit: boundary diye group korte bucket use kora hoy. 
+
+```js
+//jodi amra age ke different boundary diye vag kore dekhte chai je ei range koto. range er baire ja thakbe oita default e thakbe. 
+db.practise.aggregate([
+    {
+        $bucket: {
+            groupBy: "$age",
+            boundaries: [20,40,60,80],
+            default: "80 er uporer gulo",
+            output: {
+                count: {$sum: 1},
+                fullDocument: {$push: "$$ROOT"}
+            }
+            }
+    },
+    {
+        $sort: {count: 1}
+    }, 
+    {
+        $limit: 2
+    },
+    {
+        $project: {
+            count: 1
+        }
+    }
+    ])
+
+```
+9. $facet: amara normally ekta pipleline use kore thaki jeta stage dependable. jodi amra multiple pipeline use korte chai taile amra $facet use korbo. alada output dibe and dependable na ekta pipeline arektar upor.
+```js
+db.test.aggregate([
+    {
+        $facet: {
+            //pipeline 1
+            "friendsCount": [
+                {$unwind: "$friends"},
+                {$group: {_id: "$friends", count: {$sum: 1}}}
+            ],
+            // pipeline 2
+            "educationCount": [
+                {$unwind: "$education"},
+                {$group: {_id: "$education", count: {$sum: 1}}}
+            ]
+        }
+    }
+])
+
+```
+
+10. $lookup: jodi amra different collection theke data ana dorkar hoy tokhon amra looup use korbo. 
+
+```js
+db.Order.aggregate([
+        {
+            $lookup: {
+                   from: "practise",
+                   localField: "userId", //je collection achi and je field diey data anbo
+                   foreignField: "_id", //onno collection e je naame ache localFiled data.
+                   as: "userDetails"
+                 }
+        }
+    ])
+```
