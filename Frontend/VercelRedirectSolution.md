@@ -1,8 +1,7 @@
 ##### create vercel.json in root file
 
-```js
+```json
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
-
 ```
