@@ -1,6 +1,6 @@
 ```
 git init
-git origin add <.git>
+git remote origin add <.git> or git remote set-url origin <.git>
 git add .
 git commit -m "Initial commit"
 git checkout -b main
