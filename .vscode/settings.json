@@ -1,0 +1,66 @@
+{
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "on",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.minimap.enabled": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "expand",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "eslint.alwaysShowStatus": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontWeight": "normal",
+  "workbench.iconTheme": "material-icon-theme",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.env.windows": {},
+  "console-ninja.featureSet": "Community",
+  "chatgpt.lang": "en",
+  "settingsSync.ignoredExtensions": [],
+  "settingsSync.ignoredSettings": ["files.autoSave", "editor.fontSize"],
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+  "terminal.integrated.fontFamily": "Menlo",
+  "eslint.run": "onSave",
+  "path-autocomplete.extensionOnImport": true,
+  "path-autocomplete.excludedItems": {
+    "*/.js": {
+      "when": "**"
+    },
+    "*/.jsx": {
+      "when": "**"
+    }
+  },
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "workbench.colorTheme": "Default Dark Modern",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.editor.empty.hint": "hidden",
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.layoutControl.enabled": false,
+  "editor.fontSize": 13
+}
